@@ -1,0 +1,36 @@
+body {
+  background-color: #9CDCDA;
+}
+
+.head {
+  font-family: fantasy;
+}
+
+h1 {
+  font-size: 45px;
+  color: #0000CD;
+  text-align: center;
+  padding-top: 5%;
+  text-decoration-line: underline;
+}
+
+h2 {
+  padding-left: 30px;
+  color: green;
+  font-variant: small-caps;
+  outline: 10px solid green;
+  text-shadow: 5px 5px 10px green;
+}
+
+h3 {
+  font: italic 15px monospace;
+  font-weight: lighter;
+  margin-left: 45px;
+  line-height: 5;
+  background: #B0C4DE;
+}
+
+a:hover {
+  color: red;
+  opacity: 0.4;
+}
