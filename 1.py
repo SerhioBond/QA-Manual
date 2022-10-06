@@ -1,10 +1,10 @@
-from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import time
 
@@ -17,17 +17,17 @@ options = Options()
 # options.add_argument("--disable-dev-shm-usage"); # overcome limited resource problems
 options.add_argument("--no-sandbox")
 
-driver = webdriver.Chrome(service=Service('D:\\QA\\ChromeDriver\\chromedriver.exe'), options=options)
+driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
 # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 user = "guest"
 password = "welcome2qauto"
 driver.get("https://"+user+":"+password+"@"+"qauto2.forstudy.space/")
 
-elem = WebDriverWait(driver, 10).until(EC.text_to_be_present_in_element((By.XPATH, "//h1[contains(text(), 'Do more')]"), "Do more"))
+elem = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "*[class$='nin']")))
 
-if elem:
-  print ("Element found")
+if elem.is_displayed():
+  print ("Visible")
   not_found = True
 else:
   print ("Element not found")

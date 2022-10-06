@@ -24,13 +24,13 @@ user = "guest"
 password = "welcome2qauto"
 driver.get("https://"+user+":"+password+"@"+"qauto2.forstudy.space/")
 
-elem = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//a[@class='header_logo']")))
+elem = WebDriverWait(driver, 10).until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, "*[class$='display-2']"), "Do more"))
 
-if elem.is_displayed():
-  print ("Element clickable")
+if elem:
+  print ("Element found")
   not_found = True
 else:
-  print ("Element not clickable")
+  print ("Element not found")
   not_found = False
 
 assert not_found

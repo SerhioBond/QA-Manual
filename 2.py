@@ -1,13 +1,14 @@
-from selenium.webdriver.support import expected_conditions as EC
+import re
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.alert import Alert
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import time
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait
 
 options = Options()
 # options.add_argument("start-maximized"); # open Browser in maximized mode
@@ -24,14 +25,11 @@ user = "guest"
 password = "welcome2qauto"
 driver.get("https://"+user+":"+password+"@"+"qauto2.forstudy.space/")
 
-elem = WebDriverWait(driver, 10).until(EC.title_contains("Hillel"))
+time.sleep(2)
 
-if elem:
-  print ("OK")
-  not_found = True
-else:
-  print ("Element not found")
-  not_found = False
+goal = driver.page_source
+result = re.search(r'Home', goal)
+print(result)
+assert result
 
-assert not_found
 driver.close()

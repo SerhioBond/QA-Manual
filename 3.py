@@ -24,10 +24,10 @@ user = "guest"
 password = "welcome2qauto"
 driver.get("https://"+user+":"+password+"@"+"qauto2.forstudy.space/")
 
-elem = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//button[contains(text(), 'Sign In')]")))
+elem = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, "*[href*='/ithillel.ua']")))
 
-if elem.is_displayed():
-  print ("Visible")
+if elem:
+  print ("Element found")
   not_found = True
 else:
   print ("Element not found")
